@@ -1,0 +1,26 @@
+#!/bin/bash
+set -e
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt-get install -y \
+  build-essential \
+  curl \
+  python \
+  ccache \
+  cmake \
+  ninja-build \
+  pkg-config \
+  xvfb \
+  x11-utils \
+  libcurl4-openssl-dev \
+  libglfw3-dev \
+  libuv1-dev \
+  g++-10 \
+  libc++-9-dev \
+  libc++abi-9-dev \
+  libjpeg-turbo8
+curl https://get.volta.sh | bash
+
+# https://unix.stackexchange.com/questions/10465/how-do-i-start-xvfb-on-startup-on-debian
+export DISPLAY=:99
+xdpyinfo -display $DISPLAY > /dev/null || Xvfb $DISPLAY -screen 0 1024x768x16 &
